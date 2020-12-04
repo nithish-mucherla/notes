@@ -97,6 +97,8 @@ export default function NewNote(props) {
                                 toolbar:
                                     `undo redo`,  
                                 inline: true,
+                                skin: 'material-classic',
+                                icons: 'material'
                             }}
                             onEditorChange = {handleTitleChange}  
                         />
@@ -120,12 +122,17 @@ export default function NewNote(props) {
                                     'insertdatetime media table paste code help wordcount'
                                 ],
                                 toolbar:
-                                    `undo redo | bold italic underline | alignleft aligncenter alignright alignjustify | code
-                                    bullist numlist`,
+                                    `undo redo | bold italic underline | alignleft aligncenter alignright alignjustify |
+                                    bullist numlist | link`,
                                 auto_focus: "content$"+id,
                                 branding: false,
                                 height:350,
                                 resize:false,
+                                content_style:
+                                 `@import url('https://fonts.googleapis.com/css?family=Lato:300,400,500,700&display=swap'); 
+                                  body { font-family: 'Lato'}`,
+                                skin: 'material-classic',
+                                icons: 'material'
                             }}
                             onEditorChange = {handleContentChange}
                         />
