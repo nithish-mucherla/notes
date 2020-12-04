@@ -1,0 +1,18 @@
+@import url('https://fonts.googleapis.com/css?family=Lato:300,400,500,700&display=swap');
+.titleEditor {
+    padding: 5vh;
+    margin: 20vh 7vh 7vh 7vh;
+    font-family: 'Lato';
+}
+
+.contentEditor {
+    padding: 5vh;
+    margin: 1vh 7vh 7vh 7vh;
+    font-family: 'Lato';
+}
+
+.newNoteContainer {
+    background-color: #0586ff;
+    bottom: 0;
+    min-height: 100vh;
+}
