@@ -135,9 +135,9 @@ export default function NewNote(props) {
                             ],
                             toolbar:
                                 `undo redo | bold italic underline | alignleft aligncenter alignright alignjustify | code
-                                bullist numlist outdent indent`,
-                            inline: true,
-                            auto_focus: "content$"+id
+                                bullist numlist`,
+                            auto_focus: "content$"+id,
+                            branding: false
                         }}
                         onEditorChange = {handleContentChange}
                     />

@@ -13,7 +13,7 @@ export default function Notes(props) {
         return (
             <List>
                 {
-                    Object.keys(notes).map( (id)=><NoteItem 
+                    Object.keys(notes).reverse().map( (id)=><NoteItem 
                         changeView = {props.changeView} 
                         noteId = {id} 
                         key = {id}
