@@ -9,20 +9,8 @@ import HomeIcon from '@material-ui/icons/Home';
 import ContactsRounded from '@material-ui/icons/ContactsRounded';
 import { makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles( (theme) => ({
-    fabButton: {
-        position: 'absolute',
-        zIndex: 1,
-        top: -10,
-        left: 0,
-        right: 0,
-        margin: '0 auto',
-    },
-}));
-
 export default function NewNote(props) {
 
-    const classes = useStyles();
     const notes = JSON.parse(localStorage.getItem('notesList'));
     
     if(!notes) {
@@ -86,7 +74,6 @@ export default function NewNote(props) {
         <>
             <Grid
                 container
-                direction = "column"
                 className = "newNoteContainer"
             >
                 <Grid item xs={12}>
@@ -136,7 +123,9 @@ export default function NewNote(props) {
                                     `undo redo | bold italic underline | alignleft aligncenter alignright alignjustify | code
                                     bullist numlist`,
                                 auto_focus: "content$"+id,
-                                branding: false
+                                branding: false,
+                                height:350,
+                                resize:false,
                             }}
                             onEditorChange = {handleContentChange}
                         />
@@ -145,16 +134,16 @@ export default function NewNote(props) {
                 <Grid
                     container item
                     justify = "center"
-                    spacing = {2}
                     className = "nav"
                 >
                     <Grid item>
-                        <Fab color="secondary" aria-label="add"  onClick={()=>props.changeView({currentView:'home'})}>
+                        <Fab color="secondary" onClick={()=>props.changeView({currentView:'home'})}>
                             <HomeIcon />
                         </Fab>
                     </Grid>
+                    <Grid item><span className = "tab"></span></Grid>
                     <Grid item>
-                        <Fab color="secondary" aria-label="add"  onClick={()=>props.changeView({currentView:'contact'})}>
+                        <Fab color="secondary" onClick={()=>props.changeView({currentView:'contact'})}>
                             <ContactsRounded />
                         </Fab>
                     </Grid>
