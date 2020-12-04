@@ -1,0 +1,24 @@
+.input{
+    width: 100%;
+}
+.successMessage{
+    font-weight: bolder;
+    font-size: 120%;
+}
+
+.contactHead {
+    font-family: 'Raleway';
+    text-align: center;
+    padding: 5vh;
+    font-size: 5vh;
+    font-weight: bolder;
+}
+
+.bottomNav {
+    padding: 10vh 0vh 7vh 0;
+}
+
+.credits {
+    font-size: 80%;
+    padding-bottom: 7vh;
+}

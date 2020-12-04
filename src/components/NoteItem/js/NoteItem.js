@@ -40,10 +40,10 @@ export default function NoteItem(props) {
         >
             <ListItemText 
                 className = {classes.font}
-                primary = { <span id = {props.noteId+"$title"}  className = "title"></span> } 
+                primary = { <span id = {props.noteId+"$title"}  className = "noteTitle"></span> } 
                 secondary = { 
                     <>
-                        <span id={props.noteId+"$content"} className = "content"></span>
+                        <span id={props.noteId+"$content"} className = "noteContent"></span>
                         <i className = "lastEdit">last edit: {new Date(lastEdit).toString()}</i>
                     </> 
                 }

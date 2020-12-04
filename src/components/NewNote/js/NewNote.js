@@ -6,12 +6,10 @@ import "../css/NewNote.css";
 import Toolbar from '@material-ui/core/Toolbar';
 import Fab from '@material-ui/core/Fab';
 import HomeIcon from '@material-ui/icons/Home';
+import ContactsRounded from '@material-ui/icons/ContactsRounded';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles( (theme) => ({
-    grow: {
-        flexGrow: 1,
-    },
     fabButton: {
         position: 'absolute',
         zIndex: 1,
@@ -85,70 +83,84 @@ export default function NewNote(props) {
     }
 
     return (
-        <Grid
-            container
-            direction = "column"
-            className = "newNoteContainer"
-        >
-            <Grid item xs={12}>
-                <Paper 
-                    elevation={2}
-                    className = "titleEditor"
+        <>
+            <Grid
+                container
+                direction = "column"
+                className = "newNoteContainer"
+            >
+                <Grid item xs={12}>
+                    <Paper 
+                        elevation={2}
+                        className = "titleEditor"
+                    >
+                        <Editor
+                            initialValue = {getNoteTitle()}
+                            apiKey = '2fo1990uwcftp3lsekv7i48ir1929y8b4xob32u307wqsqtj'
+                            id = {"title$"+id}
+                            init={{
+                                selector: 'div',
+                                height: 100,
+                                menubar: false,
+                                plugins: [
+                                    'advlist autolink lists link image charmap print preview anchor',
+                                    'searchreplace visualblocks code fullscreen',
+                                    'insertdatetime media table paste code help wordcount'
+                                ],
+                                toolbar:
+                                    `undo redo`,  
+                                inline: true,
+                            }}
+                            onEditorChange = {handleTitleChange}  
+                        />
+                    </Paper>
+                </Grid>
+                <Grid item xs={12}>
+                    <Paper 
+                        elevation={2}
+                        className = "contentEditor"
+                    >
+                        <Editor
+                            initialValue = {getNoteContent()}
+                            apiKey = '2fo1990uwcftp3lsekv7i48ir1929y8b4xob32u307wqsqtj'
+                            id = {"content$"+id}
+                            init={{
+                                selector: 'div',
+                                menubar: false,
+                                plugins: [
+                                    'advlist autolink lists link image charmap print preview anchor',
+                                    'searchreplace visualblocks code fullscreen',
+                                    'insertdatetime media table paste code help wordcount'
+                                ],
+                                toolbar:
+                                    `undo redo | bold italic underline | alignleft aligncenter alignright alignjustify | code
+                                    bullist numlist`,
+                                auto_focus: "content$"+id,
+                                branding: false
+                            }}
+                            onEditorChange = {handleContentChange}
+                        />
+                    </Paper>
+                </Grid>
+                <Grid
+                    container item
+                    justify = "center"
+                    spacing = {2}
+                    className = "nav"
                 >
-                    <Editor
-                        initialValue = {getNoteTitle()}
-                        apiKey = '2fo1990uwcftp3lsekv7i48ir1929y8b4xob32u307wqsqtj'
-                        id = {"title$"+id}
-                        init={{
-                            selector: 'div',
-                            height: 100,
-                            menubar: false,
-                            plugins: [
-                                'advlist autolink lists link image charmap print preview anchor',
-                                'searchreplace visualblocks code fullscreen',
-                                'insertdatetime media table paste code help wordcount'
-                            ],
-                            toolbar:
-                                `undo redo`,  
-                            inline: true,
-                        }}
-                        onEditorChange = {handleTitleChange}  
-                    />
-                </Paper>
+                    <Grid item>
+                        <Fab color="secondary" aria-label="add"  onClick={()=>props.changeView({currentView:'home'})}>
+                            <HomeIcon />
+                        </Fab>
+                    </Grid>
+                    <Grid item>
+                        <Fab color="secondary" aria-label="add"  onClick={()=>props.changeView({currentView:'contact'})}>
+                            <ContactsRounded />
+                        </Fab>
+                    </Grid>
+                </Grid>
             </Grid>
-            <Grid item xs={12}>
-                <Paper 
-                    elevation={2}
-                    className = "contentEditor"
-                >
-                    <Editor
-                        initialValue = {getNoteContent()}
-                        apiKey = '2fo1990uwcftp3lsekv7i48ir1929y8b4xob32u307wqsqtj'
-                        id = {"content$"+id}
-                        init={{
-                            selector: 'div',
-                            menubar: false,
-                            plugins: [
-                                'advlist autolink lists link image charmap print preview anchor',
-                                'searchreplace visualblocks code fullscreen',
-                                'insertdatetime media table paste code help wordcount'
-                            ],
-                            toolbar:
-                                `undo redo | bold italic underline | alignleft aligncenter alignright alignjustify | code
-                                bullist numlist`,
-                            auto_focus: "content$"+id,
-                            branding: false
-                        }}
-                        onEditorChange = {handleContentChange}
-                    />
-                </Paper>
-                <Toolbar>
-                    <Fab color="secondary" aria-label="add" className={classes.fabButton} onClick={()=>props.changeView({currentView:'home'})}>
-                        <HomeIcon />
-                    </Fab>
-                    <div className={classes.grow} />
-                </Toolbar>
-            </Grid>
-        </Grid>
+            
+        </>
     );
 }

@@ -7,13 +7,13 @@
     cursor: pointer;
 }
 
-.title {
+.noteTitle {
     font-weight: bolder;
     font-size: 5vw;
     font-family: 'Lato';
 }
 
-.content {
+.noteContent {
     font-family: 'Lato';
     overflow: hidden;
     text-overflow: ellipsis;

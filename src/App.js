@@ -3,6 +3,7 @@ import Home from './components/Home/js/Home.js';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles'
 import {useState} from 'react';
 import NewNote from './components/NewNote/js/NewNote.js';
+import Contact from './components/contact/js/contactContainer.js';
 
 const theme = createMuiTheme({
   palette: {
@@ -25,6 +26,14 @@ function App() {
         );
     else if (view.currentView === 'newNote')
         return <NewNote action = "add" changeView = {setView}/>;
+    else if (view.currentView === 'contact')
+        return (
+            <ThemeProvider theme = {theme}>
+                <div className = "App" >
+                    <Contact changeView = {setView}/>
+                </div>
+            </ThemeProvider>  
+        );
     else 
         return <NewNote action = "edit" changeView = {setView} noteId = {view.noteId} />;
 
