@@ -117,13 +117,13 @@ export default function NewNote(props) {
                                 selector: 'div',
                                 menubar: false,
                                 plugins: [
-                                    'advlist autolink lists link image charmap print preview anchor',
+                                    'advlist autolink lists image charmap print preview anchor',
                                     'searchreplace visualblocks code fullscreen',
                                     'insertdatetime media table paste code help wordcount'
                                 ],
                                 toolbar:
-                                    `undo redo | bold italic underline | alignleft aligncenter alignright alignjustify |
-                                    bullist numlist | link`,
+                                    `undo redo | bold italic underline | alignleft aligncenter alignright alignjustify | 
+                                    bullist numlist wordcount`,
                                 auto_focus: "content$"+id,
                                 branding: false,
                                 height:350,
@@ -132,7 +132,10 @@ export default function NewNote(props) {
                                  `@import url('https://fonts.googleapis.com/css?family=Lato:300,400,500,700&display=swap'); 
                                   body { font-family: 'Lato'}`,
                                 skin: 'material-classic',
-                                icons: 'material'
+                                icons: 'material',
+                                toolbar_location: 'bottom',
+                                statusbar:false,
+
                             }}
                             onEditorChange = {handleContentChange}
                         />
