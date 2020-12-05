@@ -13,7 +13,12 @@ export default function Notes(props) {
         return (
             <List>
                 {
-                    Object.keys(notes).reverse().map( (id)=><NoteItem 
+                    Object.keys(notes).sort(function(a,b){
+                        let key1 = notes[a].lastEdit, key2 = notes[b].lastEdit;
+                        if(key1 < key2) return 1;
+                        if(key1 > key2) return -1;
+                        return 0; 
+                    }).map( (id)=><NoteItem 
                         changeView = {props.changeView} 
                         noteId = {id} 
                         key = {id}
