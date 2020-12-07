@@ -3,11 +3,9 @@ import {Editor} from '@tinymce/tinymce-react';
 import {v4 as uuidv4} from 'uuid';
 import Paper from '@material-ui/core/Paper';
 import "../css/NewNote.css";
-import Toolbar from '@material-ui/core/Toolbar';
 import Fab from '@material-ui/core/Fab';
 import HomeIcon from '@material-ui/icons/Home';
 import ContactsRounded from '@material-ui/icons/ContactsRounded';
-import { makeStyles } from '@material-ui/core/styles';
 
 export default function NewNote(props) {
 

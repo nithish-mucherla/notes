@@ -16,10 +16,10 @@ export default function NoteItem(props) {
     const title = (currentNote.title) ? currentNote.title : "";
     
     const deleteNote = (e,id) => {
-        e.stopPropagation();
         delete notesList[id];
-        props.updateNotes(notesList);
+        props.updateNotes({...props.notes, notesList:notesList });
         localStorage.setItem('notesList', JSON.stringify(notesList));
+        e.stopPropagation();
     }
 
     useEffect(() => {
@@ -33,8 +33,10 @@ export default function NoteItem(props) {
             alignItems="center" 
             className = "NoteItem"
             onClick = { 
-                ()=> {
+                (e)=> {
+                    if(e.target.tagName.toLowerCase() !== 'a')
                     props.changeView( { currentView : 'editNote', noteId: props.noteId} );
+                    
                 }
             } 
         >

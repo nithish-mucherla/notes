@@ -2,30 +2,30 @@ import {useState} from 'react';
 import launcherImg from '../launcherImage.svg';
 import '../css/NotesContainer.css';
 import Grid from '@material-ui/core/Grid';
-import NoteItem from '../../NoteItem/js/NoteItem.js';
-import { List } from '@material-ui/core';
+import {NotesList} from '../../NotesList/js/NotesList.js';
 
-export default function Notes(props) {
-    const [notes, updateNotesList] = useState(JSON.parse(localStorage.getItem('notesList')) || {});
-    let notesCount = Object.keys(notes).length;
-    
+export default function Notes({ changeView }) {
+    const [notes, updateNotesList] = useState( 
+        { 
+            notesList: ( JSON.parse(localStorage.getItem('notesList')) || {} ), 
+            searchKey: '' 
+        } || {}
+    );
+    let notesCount = Object.keys(notes.notesList).length;
+    const searchNotes = Object.keys(notes.notesList).filter( (id) => {
+        return (notes.searchKey==='') ? true :  
+        ( notes.notesList[id].content && notes.notesList[id].content.includes(notes.searchKey) ) || 
+        ( notes.notesList[id].title && notes.notesList[id].title.includes(notes.searchKey) )
+    });
+
     if(notesCount > 0)
         return (
-            <List>
-                {
-                    Object.keys(notes).sort(function(a,b){
-                        let key1 = notes[a].lastEdit, key2 = notes[b].lastEdit;
-                        if(key1 < key2) return 1;
-                        if(key1 > key2) return -1;
-                        return 0; 
-                    }).map( (id)=><NoteItem 
-                        changeView = {props.changeView} 
-                        noteId = {id} 
-                        key = {id}
-                        updateNotes = {updateNotesList}
-                    /> )
-                }  
-            </List>   
+            <NotesList 
+                changeView = {changeView} 
+                updateNotesList = {updateNotesList} 
+                notes = {notes}
+                notesIds = {searchNotes}
+            />
         );
     return (
         <Grid
